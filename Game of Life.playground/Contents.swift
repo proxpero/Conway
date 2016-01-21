@@ -3,9 +3,9 @@
 //  If you size the console just right, you should be able to 
 //  get an acceptable animation of the generations going by.
 
-var controller = Controller(boardSize: (30, 80), seeds: [])
+var controller = Controller(boardSize: (30, 100), seeds: [])
 
-for _ in (1...500) {
+for _ in (1...1000) {
     print(controller)
     controller.update()
 }

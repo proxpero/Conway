@@ -36,38 +36,38 @@ public struct Controller {
     
     public mutating func update() {
         
-        var revive = [Cell]()
-        var destroy = [Cell]()
+        var cellsToRevive = [Cell]()
+        var cellsToDestroy = [Cell]()
         
         for cell in board.cells {
             
             // Any live cell with fewer than two live neighbours dies, as if caused by under-population.
         
             if cell.isAlive && board.numberOfLiveNeighborsForCell(cell) < 2 {
-                destroy.append(cell)
+                cellsToDestroy.append(cell)
             }
 
             // Any live cell with two or three live neighbours lives on to the next generation.
             if cell.isAlive && [2,3].contains(board.numberOfLiveNeighborsForCell(cell)) {
-                revive.append(cell)
+                cellsToRevive.append(cell)
             }
 
             // Any live cell with more than three live neighbours dies, as if by over-population.
             if cell.isAlive && board.numberOfLiveNeighborsForCell(cell) > 3 {
-                destroy.append(cell)
+                cellsToDestroy.append(cell)
             }
             
             // Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
             if !cell.isAlive && board.numberOfLiveNeighborsForCell(cell) == 3 {
-                revive.append(cell)
+                cellsToRevive.append(cell)
             }
         }
         
-        for cell in revive {
+        for cell in cellsToRevive {
             board.reviveCellAtRow(cell.row, column: cell.col)
         }
         
-        for cell in destroy {
+        for cell in cellsToDestroy {
             board.killCellAtRow(cell.row, column: cell.col)
         }
         

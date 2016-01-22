@@ -97,8 +97,8 @@ public struct Board {
         if isAliveAt(.North, .West) { neighbors += 1 }
         if isAliveAt(.North, .None) { neighbors += 1 }
         if isAliveAt(.North, .East) { neighbors += 1 }
-        if isAliveAt(.None, .West) { neighbors += 1 }
-        if isAliveAt(.None, .East) { neighbors += 1 }
+        if isAliveAt(.None,  .West) { neighbors += 1 }
+        if isAliveAt(.None,  .East) { neighbors += 1 }
         if isAliveAt(.South, .West) { neighbors += 1 }
         if isAliveAt(.South, .None) { neighbors += 1 }
         if isAliveAt(.South, .East) { neighbors += 1 }

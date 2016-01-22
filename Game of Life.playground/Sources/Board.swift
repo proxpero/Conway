@@ -64,7 +64,6 @@ public struct Board {
     public func numberOfLiveNeighborsForCell(cell: Cell) -> Int {
 
         var neighbors = 0
-//        var neighbors = [Cell]()
         
         let row = cell.row
         let column = cell.col
@@ -104,10 +103,6 @@ public struct Board {
         if isAliveAt(.South, .None) { neighbors += 1 }
         if isAliveAt(.South, .East) { neighbors += 1 }
         
-        // Get the eight neighbors then filter out the dead ones.
-        // These checks guard against trying to access cells outside the bounds of the board.
-        
-
         return neighbors
     }
     

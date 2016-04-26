@@ -13,28 +13,31 @@ public struct Controller {
     internal var board: Board
     var generation = 0
     
-    public init(boardSize: (rows: Int, columns: Int), var seeds: [(Int, Int)] = []) {
+    public init(boardSize: (rows: Int, columns: Int) = (150,100), seeds: [(Int, Int)] = []) {
         self.board = Board(rows: boardSize.rows, columns: boardSize.columns)
         
-        if seeds.isEmpty {
+        let s: [(Int, Int)] = {
+            if !seeds.isEmpty { return seeds }
+            var result: [(Int, Int)] = []
             
             for r in (0 ..< boardSize.rows) {
                 for c in (0 ..< boardSize.columns) {
                     if arc4random_uniform(100) % 2 == 0 {
-                        seeds.append((r, c))
+                        result.append((r, c))
                     }
                 }
             }
-        }
+            return result
+        }()
         
-        for (r, c) in seeds {
+        for (r, c) in s {
             if r < boardSize.rows && c < boardSize.columns {
                 self.board.reviveCellAtRow(r, column: c)
             }
         }
     }
     
-    public mutating func update() {
+    public mutating func update(completion: ()->() = { _ in }) {
         
         var cellsToRevive = [Cell]()
         var cellsToDestroy = [Cell]()
@@ -72,6 +75,7 @@ public struct Controller {
         }
         
         generation += 1
+        completion()
     }
 }
 

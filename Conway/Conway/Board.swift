@@ -25,7 +25,7 @@ public typealias BoardSize = (rowCount: Int, columnCount: Int)
 
 public struct Board {
     
-    private var grid: [[Cell]]
+    public var grid: [[Cell]]
     
     public init(rows: Int, columns: Int) {
         

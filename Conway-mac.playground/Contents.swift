@@ -3,7 +3,9 @@
 //  If you size the console just right, you should be able to 
 //  get an acceptable animation of the generations going by.
 
-var controller = Controller(boardSize: (30, 100), seeds: [])
+import Logic
+
+var controller = Controller()
 
 for _ in (1...1000) {
     print(controller)
